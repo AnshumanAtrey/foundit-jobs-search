@@ -55,7 +55,7 @@ Apify's free $5 monthly credit covers about 600 runs of 100 jobs.
 
 ## Speed
 
-A search of 100 jobs takes a few seconds: one call per site and 100 jobs. Measured on Apify on 2026-11-08 at the default 512 MB: the 100 newest jobs from all nine sites in 3.3 s, the 1,000 newest in 13 s, 50 jobs with full details in 27 s, a state search (accountant in Karnataka, 100 jobs) in 87 s. Measured locally: 5,000 jobs in under a minute, every job foundit shows on all nine sites (72,668) in 7 minutes. Full details read each saved job once more, about 2 jobs a second, because foundit refuses an address that calls too fast.
+A search of 100 jobs takes a few seconds: one call per site and 100 jobs. Measured on Apify on 2026-11-08 at the default 512 MB: the 100 newest jobs from all nine sites in 3.3 s, the 1,000 newest in 13 s, 50 jobs with full details in 27 s. Measured locally: 5,000 jobs in under a minute, every job foundit shows on all nine sites (72,668) in 7 minutes. Full details read each saved job once more, about 2 jobs a second, because foundit refuses an address that calls too fast.
 
 ## How to call it
 
