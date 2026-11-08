@@ -2,7 +2,7 @@
 
 Foundit Jobs Scraper and API: search all nine foundit sites at once, live, and get each job's title, company, location, years of experience asked, skills, job type, pay when shown, first-listed date, closing date, country site and links, newest first. foundit is the new name of Monster India, Monster Gulf and Monster's Southeast Asia sites: foundit.in, founditgulf.com, foundit.sg, foundit.com.ph, foundit.my, foundit.id, foundit.hk, monster.co.th and monster.com.vn, with 450,000+ open jobs on 2026-11-08. Turn on full details for the description, every place with its state and the qualifications asked for.
 
-Use it as a foundit jobs API or a Monster India jobs scraper with no login and no key, or as a daily feed of new jobs in Bangalore, Mumbai, Delhi, Dubai, Singapore or Manila, from the Apify Console, the Apify API, Python, JavaScript, n8n, Make or an AI agent, and export JSON, CSV or Excel. Type a place and the run searches the foundit site that lists it, so India and the Gulf fit in one run. Available as an [Apify Actor](https://apify.com/anshumanatrey/foundit-jobs-search). $0.0018 per job, $0.0019 with full details, no start fee.
+Use it as a foundit jobs API or a Monster India jobs scraper with no login and no key, or as a daily feed of new jobs in Bangalore, Mumbai, Delhi, Dubai, Singapore or Manila, from the Apify Console, the Apify API, Python, JavaScript, n8n, Make or an AI agent, and export JSON, CSV or Excel. Type a place and the run searches the foundit site that lists it, so India and the Gulf fit in one run. Available as an [Apify Actor](https://apify.com/anshumanatrey/foundit-jobs-search). $0.0063 a run start, then $0.000017 per job and $0.000059 with full details.
 
 ## What does it do?
 
@@ -20,7 +20,7 @@ Use it as a foundit jobs API or a Monster India jobs scraper with no login and n
 - **The place you asked for, checked.** A city search on foundit also returns jobs in nearby cities and remote jobs: of foundit's newest 100 Dubai accountant jobs on 2026-11-08, six were remote jobs with no Dubai in them; of its newest 100 Mumbai sales manager jobs, eight were in Thane and one was a Hyderabad remote job. This actor drops them, so the place column is what you asked for.
 - **First-listed date, not the refresh date.** foundit's own date filter and its "Posted 5 hours ago" count from a job's last renewal (memo23's README says the same of its days filter). Here a job renewed today but first listed a month ago is a month old, and refreshedAt still tells you it was renewed.
 - **Native or syndicated on every row.** About 98% of the newest foundit jobs are copied from other job sites, mostly LinkedIn, and their apply link goes there; jobSource says which is which, and applyUrl points to the right place.
-- **You pay for what you get.** One charge per delivered row, no start fee, and a spending limit stops the run cleanly with the jobs it paid for.
+- **You pay for what you get.** A run costs a $0.0063 start plus $0.000017 a delivered job, and a spending limit stops the run cleanly with the jobs it paid for.
 
 ## When should I use it?
 
@@ -31,21 +31,22 @@ Use it as a foundit jobs API or a Monster India jobs scraper with no login and n
 
 ## How much does it cost to scrape Foundit jobs?
 
-Pay per event: $1.80 per 1,000 jobs, or $1.90 per 1,000 with full details, and no start fee. Apify's free $5 monthly credit covers about 2,700 jobs. Platform usage is included, and there is no monthly fee.
+Pay per event: $0.0063 to start a run, then $0.017 per 1,000 jobs, or $0.059 per 1,000 with full details. Apify's free $5 monthly credit covers about 600 runs of 100 jobs. Platform usage is included, and there is no monthly fee.
 
 | Event | Price | When it is charged |
 |---|---|---|
-| Job | $0.0018 | One saved job, and one checked link that is closed or not found |
-| Job with details | $0.0019 | One saved job with full details on |
+| Run start | $0.0063 | Once when a run starts (once per GB of memory, so once at the default 512 MB) |
+| Job | $0.000017 | One saved job, and one checked link that is closed or not found |
+| Job with details | $0.000059 | One saved job with full details on |
 
-Foundit Jobs Scraper's Apify Store header, "from $1.44 / 1,000 jobs", shows the lowest discount-tier price: the GOLD price. FREE and BRONZE users (Apify's Free and Starter plans) pay the base price in the table, $0.0018 a job and $0.0019 with details; SILVER (Scale) pays 10% less, $0.00162 and $0.00171; GOLD (Business) and above pay 20% less, $0.00144 and $0.00152.
+Foundit Jobs Scraper's Apify Store header, "from $0.011 / 1,000 jobs", shows the lowest discount-tier price, the GOLD price, without the run start. FREE users (Apify's Free plan) pay the prices in the table; BRONZE (Starter) pays $0.000016 a job and $0.000057 with details; SILVER (Scale) $0.000014 and $0.000044; GOLD (Business) and above $0.000011 and $0.000035. The run start is $0.0063 on every plan.
 
-| Run (Free and Starter price) | Cost |
+| Run (Free plan price) | Cost |
 |---|---|
-| 100 newest jobs | $0.18 |
-| 100 jobs with full details | $0.19 |
-| 1,000 jobs | $1.80 |
-| A whole search, the 9,600 newest jobs foundit shows for it on one site | $17.28 |
+| 100 newest jobs | $0.008 |
+| 100 jobs with full details | $0.0122 |
+| 1,000 jobs | $0.0233 |
+| A whole search, the 9,600 newest jobs foundit shows for it on one site | $0.17 |
 
 Number of jobs (`maxJobs`) sets the most a run can cost, and a run stops at its spending limit with a message saying so.
 
@@ -64,9 +65,9 @@ Every actor on the Apify Store that names Foundit in its title or slug and had 1
 | scrapewise/foundit-scraper | 20 | $0.001 | none | 6 sites, one a run |
 | scrapesage/foundit-scraper | 18 | $0.004 | none | 7 sites, one a run |
 | data_daemon/foundit-jobs-scraper | 11 | $0.0008 | $0.001 | foundit.in |
-| This actor | new | $0.0018, $0.0019 with details | none | all 9 sites, several in one run |
+| This actor | new | $0.000017, $0.000059 with details | $0.0063 | all 9 sites, several in one run |
 
-Where others are cheaper: data_daemon charges $0.0008 a job with the description included (plus a $0.001 start fee), and shahidirfan and scrapewise $0.001 a job, all for foundit.in or one site a run; getascraper's feed costs $0.00199 and also covers other Indian boards. Where others do more: memo23 adds coordinates and paid email and market add-ons, and themineworks and khadinakbar have a monitor mode that returns only jobs new since the last run. This actor costs 10% less per job than the most used actor made only for Foundit (themineworks) on the Starter plan, and less on every paid plan.
+Where others are cheaper: on a run of 6 jobs or fewer, because of this actor's $0.0063 run start. data_daemon charges $0.0008 a job with the description included plus a $0.001 start fee, and scrapewise $0.001 a job, both for foundit.in or one site a run. From 7 jobs a run this actor costs the least of the ten: 100 jobs cost $0.008 here and $0.25 on the most used actor made only for Foundit (themineworks, Free plan). Where others do more: memo23 adds coordinates and paid email and market add-ons, and themineworks and khadinakbar have a monitor mode that returns only jobs new since the last run.
 
 ## Which inputs does it take?
 
@@ -147,7 +148,7 @@ Full details add `description`, `descriptionHtml`, `qualifications`, `salaryMin`
 
 ## How fast is it?
 
-A search of 100 jobs takes a few seconds: one to ten calls to foundit, one per site and 100 jobs. Measured locally on 2026-11-08, from start to finish: the 100 newest jobs from all nine sites in 4 s; 5,000 jobs in under a minute; in 51 s the 9,600 newest engineer jobs foundit shows for India, of which the 7,914 with engineer in the title were saved; and every job foundit shows on all nine sites, 72,668, in 7 minutes. Searches peaked at 80 to 130 MB of memory, the every-job run at 300 MB. Full details read each saved job once more, at about 2 jobs a second, so 100 jobs with details take about a minute (300 took 151 s). A state (Karnataka) opens each candidate job for its state, at the same pace. foundit's network refuses an address that calls too fast, so the run keeps to about 2 calls a second and waits when it is refused, and a foundit outage that outlasts the retries is named in the run's message (one site answered 503 for a while during our tests: the run saved the jobs it had read and said which site failed).
+A search of 100 jobs takes a few seconds: one to ten calls to foundit, one per site and 100 jobs. Measured on Apify on 2026-11-08 at the default 512 MB, from start to finish: the 100 newest jobs from all nine sites in 3.3 s, python developer in Bangalore in 4.3 s, the 1,000 newest jobs from all nine sites in 13 s, and 50 Mumbai sales manager jobs with full details in 27 s; every run peaked under 100 MB. Measured locally the same day: 5,000 jobs in under a minute; in 51 s the 9,600 newest engineer jobs foundit shows for India, of which the 7,914 with engineer in the title were saved; and every job foundit shows on all nine sites, 72,668, in 7 minutes at 300 MB. Full details read each saved job once more, at about 2 jobs a second, so 100 jobs with details take about a minute (300 took 151 s locally). A state opens each candidate job for its state, at the same pace: accountant in Karnataka took 87 s on Apify for 100 jobs. foundit's network refuses an address that calls too fast, so the run keeps to about 2 calls a second and waits when it is refused, and a foundit outage that outlasts the retries is named in the run's message (one site answered 503 for a while during our tests: the run saved the jobs it had read and said which site failed).
 
 ## Common questions
 
@@ -185,7 +186,7 @@ Foundit Jobs Scraper needs no login, no proxy and no foundit key: it reads the s
 
 ### Does it work on Apify's free plan?
 
-Foundit Jobs Scraper works on Apify's free plan at the base price, $0.0018 a job with no start fee. The free $5 monthly credit pays for about 2,700 jobs.
+Foundit Jobs Scraper works on Apify's free plan: $0.0063 a run start and $0.000017 a job. The free $5 monthly credit pays for about 600 runs of 100 jobs.
 
 ### How often should I run it?
 
