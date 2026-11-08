@@ -1,5 +1,6 @@
 {
     "$comment": "Listing metadata, applied by scripts/store-metadata.mjs in CI (manager/rules/SEO.md). Add actorId after the first deploy creates the actor, so CI updates it by ID and a rename of name in actor.json keeps the same actor.",
+    "actorId": "clHOOvA8eIyGvkGwq",
     "seoTitle": "Foundit Jobs Scraper - Monster India & Gulf Jobs",
     "seoDescription": "Scrape foundit.in, founditgulf.com and seven more foundit sites: job titles, companies, years of experience, skills, pay and posting dates. No login.",
     "exampleRunInput": {
