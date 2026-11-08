@@ -1,0 +1,322 @@
+{
+    "$comment": "Example tasks published on the Store by scripts/publish-tasks.mjs after every deploy (CI only). Each one is a search people type, with its own Google-indexed landing page and .md (manager/rules/SEO.md section 18). Limits: title 63, description 400, seoTitle 60, seoDescription 160 (154 kept), 10 per actor. inputSchemaFields must stay fields of the input schema, or the page stops showing after a build. options follow defaultRunOptions in store.json.",
+    "options": {
+        "build": "latest",
+        "memoryMbytes": 1024,
+        "timeoutSecs": 1800
+    },
+    "tasks": [
+        {
+            "name": "foundit-jobs-last-24-hours",
+            "title": "Find the newest foundit jobs posted in the last 24 hours",
+            "description": "Get the 100 newest jobs that foundit first listed in the last day, across all nine sites from India to the Gulf and Southeast Asia, with the company, location, experience asked and link. A renewed old job does not count as new. Set Number of jobs to 0 to get every one, and schedule it daily.",
+            "input": {
+                "searchTerms": [],
+                "location": [],
+                "experienceYears": "any",
+                "postedWithin": "24 hours",
+                "maxJobs": 100,
+                "includeDetails": false,
+                "workType": [],
+                "employmentType": [],
+                "excludeTerms": [],
+                "searchDescriptions": false,
+                "jobUrls": []
+            },
+            "seoTitle": "New foundit Jobs in the Last 24 Hours",
+            "seoDescription": "The newest jobs first listed on foundit and Monster India in the last day, with company, location, experience and link. Run it daily for a fresh feed.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "experienceYears",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "python-developer-jobs-bangalore-foundit",
+            "title": "Find python developer jobs in Bangalore on foundit",
+            "description": "Search foundit.in (Monster India) for python developer jobs in Bangalore, newest first, with the company, years of experience asked, skills and link. Bangalore also finds the jobs foundit writes as Bengaluru.",
+            "input": {
+                "searchTerms": [
+                    "python developer"
+                ],
+                "location": [
+                    "Bangalore"
+                ],
+                "experienceYears": "any",
+                "postedWithin": "any time",
+                "maxJobs": 100,
+                "includeDetails": false,
+                "workType": [],
+                "employmentType": [],
+                "excludeTerms": [],
+                "searchDescriptions": false,
+                "jobUrls": []
+            },
+            "seoTitle": "Python Developer Jobs in Bangalore on foundit",
+            "seoDescription": "The newest python developer jobs in Bangalore from foundit.in, formerly Monster India, with experience asked, skills and link. No login needed.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "experienceYears",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "data-analyst-jobs-india-foundit",
+            "title": "Find data analyst jobs in India on foundit",
+            "description": "Search foundit.in for data analyst jobs anywhere in India, newest first, with the company, city, years of experience asked, skills and link.",
+            "input": {
+                "searchTerms": [
+                    "data analyst"
+                ],
+                "location": [
+                    "India"
+                ],
+                "experienceYears": "any",
+                "postedWithin": "any time",
+                "maxJobs": 100,
+                "includeDetails": false,
+                "workType": [],
+                "employmentType": [],
+                "excludeTerms": [],
+                "searchDescriptions": false,
+                "jobUrls": []
+            },
+            "seoTitle": "Data Analyst Jobs in India on foundit",
+            "seoDescription": "The newest data analyst jobs in India from foundit.in, formerly Monster India, with the city, years of experience asked, skills and the job link.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "experienceYears",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "fresher-jobs-india-foundit",
+            "title": "Find fresher jobs in India on foundit",
+            "description": "Get the newest jobs on foundit.in that are open to freshers, with 0 years of experience at the low end of their range, with the company, city, skills and link.",
+            "input": {
+                "searchTerms": [],
+                "location": [
+                    "India"
+                ],
+                "experienceYears": "fresher",
+                "postedWithin": "any time",
+                "maxJobs": 100,
+                "includeDetails": false,
+                "workType": [],
+                "employmentType": [],
+                "excludeTerms": [],
+                "searchDescriptions": false,
+                "jobUrls": []
+            },
+            "seoTitle": "Fresher Jobs in India on foundit",
+            "seoDescription": "The newest jobs open to freshers on foundit.in, formerly Monster India: experience range starting at 0 years, with company, city, skills and link.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "experienceYears",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "remote-jobs-india-foundit",
+            "title": "Find remote jobs in India on foundit",
+            "description": "Get the newest remote and work-from-home jobs in India on foundit.in, from foundit's work-from-home type and from Remote in the location or title, with the company, experience asked and link.",
+            "input": {
+                "searchTerms": [],
+                "location": [
+                    "India"
+                ],
+                "experienceYears": "any",
+                "postedWithin": "any time",
+                "maxJobs": 100,
+                "includeDetails": false,
+                "workType": [
+                    "remote"
+                ],
+                "employmentType": [],
+                "excludeTerms": [],
+                "searchDescriptions": false,
+                "jobUrls": []
+            },
+            "seoTitle": "Remote Jobs in India on foundit",
+            "seoDescription": "The newest remote and work-from-home jobs in India on foundit.in, formerly Monster India, with the company, years of experience asked and job link.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "experienceYears",
+                "postedWithin",
+                "maxJobs",
+                "workType"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "sales-jobs-mumbai-foundit",
+            "title": "Find sales jobs in Mumbai on foundit",
+            "description": "Search foundit.in for sales jobs in Mumbai, newest first, with the company, years of experience asked, skills and link. Only jobs in Mumbai itself: add Thane or Navi Mumbai as more places to include them.",
+            "input": {
+                "searchTerms": [
+                    "sales"
+                ],
+                "location": [
+                    "Mumbai"
+                ],
+                "experienceYears": "any",
+                "postedWithin": "any time",
+                "maxJobs": 100,
+                "includeDetails": false,
+                "workType": [],
+                "employmentType": [],
+                "excludeTerms": [],
+                "searchDescriptions": false,
+                "jobUrls": []
+            },
+            "seoTitle": "Sales Jobs in Mumbai on foundit",
+            "seoDescription": "The newest sales jobs in Mumbai from foundit.in, formerly Monster India, with company, experience asked, skills and job link. No login needed.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "experienceYears",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "jobs-in-dubai-uae-foundit-gulf",
+            "title": "Find jobs in Dubai and the UAE on foundit Gulf",
+            "description": "Get the newest jobs in the United Arab Emirates from founditgulf.com, formerly Monster Gulf, with the company, city, experience asked and link.",
+            "input": {
+                "searchTerms": [],
+                "location": [
+                    "UAE"
+                ],
+                "experienceYears": "any",
+                "postedWithin": "any time",
+                "maxJobs": 100,
+                "includeDetails": false,
+                "workType": [],
+                "employmentType": [],
+                "excludeTerms": [],
+                "searchDescriptions": false,
+                "jobUrls": []
+            },
+            "seoTitle": "Jobs in Dubai and the UAE on foundit Gulf",
+            "seoDescription": "The newest UAE jobs from founditgulf.com, formerly Monster Gulf: Dubai, Abu Dhabi and Sharjah, with the company, experience asked and job link.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "experienceYears",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "software-engineer-jobs-singapore-foundit",
+            "title": "Find software engineer jobs in Singapore on foundit",
+            "description": "Search foundit.sg, formerly Monster Singapore, for software engineer jobs, newest first, with the company, experience asked, pay when shown and link.",
+            "input": {
+                "searchTerms": [
+                    "software engineer"
+                ],
+                "location": [
+                    "Singapore"
+                ],
+                "experienceYears": "any",
+                "postedWithin": "any time",
+                "maxJobs": 100,
+                "includeDetails": false,
+                "workType": [],
+                "employmentType": [],
+                "excludeTerms": [],
+                "searchDescriptions": false,
+                "jobUrls": []
+            },
+            "seoTitle": "Software Engineer Jobs in Singapore on foundit",
+            "seoDescription": "The newest software engineer jobs from foundit.sg, formerly Monster Singapore, with the company, experience asked, pay when shown and job link.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "experienceYears",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "jobs-in-philippines-foundit",
+            "title": "Find jobs in the Philippines on foundit",
+            "description": "Get the newest jobs from foundit.com.ph, formerly Monster Philippines, in Manila, Taguig, Cebu and the rest of the country, with the company, experience asked and link.",
+            "input": {
+                "searchTerms": [],
+                "location": [
+                    "Philippines"
+                ],
+                "experienceYears": "any",
+                "postedWithin": "any time",
+                "maxJobs": 100,
+                "includeDetails": false,
+                "workType": [],
+                "employmentType": [],
+                "excludeTerms": [],
+                "searchDescriptions": false,
+                "jobUrls": []
+            },
+            "seoTitle": "Jobs in the Philippines on foundit",
+            "seoDescription": "The newest jobs from foundit.com.ph, formerly Monster Philippines: Manila, Taguig, Cebu and more, with company, experience asked and job link.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "experienceYears",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "nurse-jobs-gulf-philippines-foundit",
+            "title": "Find nurse jobs in the Gulf and the Philippines on foundit",
+            "description": "Search foundit's Gulf and Philippines sites for nurse jobs in one run, newest first, with the company, city, experience asked and link.",
+            "input": {
+                "searchTerms": [
+                    "nurse"
+                ],
+                "location": [
+                    "Gulf",
+                    "Philippines"
+                ],
+                "experienceYears": "any",
+                "postedWithin": "any time",
+                "maxJobs": 100,
+                "includeDetails": false,
+                "workType": [],
+                "employmentType": [],
+                "excludeTerms": [],
+                "searchDescriptions": false,
+                "jobUrls": []
+            },
+            "seoTitle": "Nurse Jobs in the Gulf and Philippines on foundit",
+            "seoDescription": "Nurse jobs from founditgulf.com and foundit.com.ph in one search, newest first, with the company, city, years of experience asked and job link.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "experienceYears",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        }
+    ]
+}

@@ -1,0 +1,147 @@
+# Foundit Jobs Scraper & API - Monster India, Gulf & Singapore
+
+> Foundit jobs scraper and API for all nine foundit sites: Monster India (foundit.in), Monster Gulf, Singapore, the Philippines, Malaysia, Indonesia, Hong Kong, Thailand and Vietnam.
+
+## Summary
+
+Foundit Jobs Scraper is an Apify actor that searches all nine foundit job sites, the new name of Monster India, Monster Gulf and Monster's Southeast Asia sites, live and at once, and returns one row per job, newest first: title, company, location, years of experience asked, skills, job type, pay when shown, first-listed date, closing date, country site, listing source and links. On 2026-11-08 the sites listed 450,058 open jobs: India 219,732, Singapore 107,828, the Philippines 39,492, the Gulf 30,909, Malaysia 21,817, Indonesia 11,602, Vietnam 6,923, Thailand 6,194 and Hong Kong 5,561. Each typed place goes to the site that lists it, so India and the Gulf fit in one run, and every job's location is checked, so a city search returns only that city. No login and no key.
+
+Store: https://apify.com/anshumanatrey/foundit-jobs-search
+Source: https://github.com/AnshumanAtrey/foundit-jobs-search
+
+## Key features
+
+- All nine sites: foundit.in, founditgulf.com, foundit.sg, foundit.com.ph, foundit.my, foundit.id, foundit.hk, monster.co.th and monster.com.vn, several in one run with no country selector.
+- Only jobs in the place you typed: foundit's own search adds nearby cities and remote jobs to a city search; this actor drops them. Bangalore also finds Bengaluru and Gurgaon finds Gurugram, by foundit's own place list.
+- Years of experience as numbers on every row that states them, and a filter that takes 3, 2-5, 5+ or fresher.
+- Newest first by the date foundit's job page gives Google (first listed), with the renewal date apart as refreshedAt.
+- Remote jobs read from foundit's work-from-home type and from Remote in the location or title, where most syndicated jobs say it.
+- Native or syndicated on every row (jobSource), with the original apply link.
+- Job link check: each pasted link, old monsterindia.com links included, comes back open, closed or not found.
+
+## Input keys
+
+- Job titles to find (searchTerms): one per line; a job matches when its title has every word.
+- Where the job is (location): city, state, country or region; each goes to the site that lists it; empty searches all nine sites.
+- Experience (experienceYears): 3, 2-5, 5+ or fresher; jobs whose range overlaps it.
+- Posted in the last (postedWithin): 24 hours, 3 days, 7 days, 30 days, any time, or your own period.
+- Number of jobs (maxJobs): 100 by default, 0 for every match (foundit shows up to 9,600 per search and site).
+- Full details (includeDetails): adds the description, every place with its state and country, the qualifications and pay as numbers.
+- Remote or hybrid (workType): remote or hybrid.
+- Job type (employmentType): full-time, part-time or contract.
+- Leave out words (excludeTerms): drops jobs whose title has these words.
+- Match descriptions (searchDescriptions): keeps every job foundit's own search finds for the words in skills and description.
+- Job links to check (jobUrls): checks links instead of searching.
+
+## Pricing
+
+PAY_PER_EVENT model, platform usage included, no start fee:
+
+- Job: $0.0018 per saved job ($1.80 per 1,000), and per checked link that is closed or not found
+- Job with details: $0.0019 per saved job with full details on ($1.90 per 1,000)
+
+Foundit Jobs Scraper's Apify Store header, "from $1.44 / 1,000 jobs", shows the lowest discount-tier price: the GOLD price. FREE and BRONZE users (Apify's Free and Starter plans) pay the base prices above, $0.0018 a job and $0.0019 with details; SILVER (Scale) pays 10% less, $0.00162 and $0.00171; GOLD (Business) and above pay 20% less, $0.00144 and $0.00152.
+
+Typical costs (Free and Starter price):
+
+- 100 newest jobs: $0.18
+- 100 jobs with full details: $0.19
+- 1,000 jobs: $1.80
+
+Apify's free $5 monthly credit covers about 2,700 jobs.
+
+## Speed
+
+A search of 100 jobs takes a few seconds: one call per site and 100 jobs. Measured locally on 2026-11-08: the 100 newest jobs from all nine sites in 4 s, 5,000 jobs in under a minute, every job foundit shows on all nine sites (72,668) in 7 minutes. Full details read each saved job once more, about 2 jobs a second, because foundit refuses an address that calls too fast.
+
+## How to call it
+
+- Apify API: POST https://api.apify.com/v2/acts/anshumanatrey~foundit-jobs-search/run-sync-get-dataset-items with the input as JSON and the header Authorization: Bearer <APIFY_TOKEN>. It returns the rows and waits up to 300 seconds, so start bigger runs with a client.
+- Python and JavaScript: the apify-client package, actor anshumanatrey/foundit-jobs-search.
+- n8n: the Apify node, Run an Actor and get dataset. Make: the Apify app's Run an Actor and Get Dataset Items modules.
+- MCP: https://mcp.apify.com?tools=anshumanatrey/foundit-jobs-search, signed in with Apify or with Authorization: Bearer <APIFY_TOKEN>.
+
+## When to use
+
+- The user wants jobs from foundit or Monster India, a foundit jobs API, or Monster Gulf or Monster Singapore jobs.
+- The user wants new jobs by title, city, years of experience and date in India, the Gulf or Southeast Asia, on a schedule.
+- The user wants several countries in one run, such as India and the UAE.
+- The user wants to check whether foundit job links are still open.
+
+## When NOT to use
+
+- The user needs jobs that exist only on other Indian boards (Naukri, Indeed, Shine): use an actor for that board or a multi-board feed.
+- The user needs pay on most jobs: foundit shows pay on about 40% of Singapore jobs and 1% or less elsewhere.
+- The user needs every job of a broad search on one site: foundit shows the 9,600 newest per search and site.
+- The user wants the lowest price per job for India only: data_daemon/foundit-jobs-scraper charges $0.0008 with descriptions plus a start fee, and shahidirfan/Foundit-Jobs-Scraper $0.001.
+
+## Sample input
+
+```json
+{
+  "searchTerms": ["python developer"],
+  "location": ["Bangalore", "Pune"],
+  "experienceYears": "3",
+  "postedWithin": "7 days",
+  "maxJobs": 100
+}
+```
+
+## Sample output (one record)
+
+From a local run of the release candidate on 2026-11-08: python developer in Bangalore.
+
+```json
+{
+  "title": "Senior Python Developer - (Python with SSH mandatory), 6+yrs,Bangalore, Immediate Joiners only",
+  "company": "Global Technologies",
+  "location": "Bengaluru, India",
+  "employmentType": "full-time",
+  "salary": null,
+  "postedAt": "2026-11-07T17:21:28Z",
+  "expiresAt": "2026-12-06T18:30:00Z",
+  "jobUrl": "https://www.foundit.in/job/senior-python-developer-python-with-ssh-mandatory-6yrs-bangalore-immediate-joiners-only-global-technologies-bengaluru-bangalore-india-69753511",
+  "status": "open",
+  "platform": "foundit",
+  "jobId": "69753511",
+  "experienceMin": 6,
+  "experienceMax": 8,
+  "site": "foundit.in",
+  "skills": ["Report Generation", "SSH Paramiko", "log parsing", "C++", "Robot Framework", "Python", "Pytest"],
+  "employerType": "company",
+  "jobSource": "syndicated",
+  "refreshedAt": "2026-11-07T17:21:28Z"
+}
+```
+
+## Differentiators vs alternatives
+
+- vs themineworks/foundit-jobs-scraper ($0.0025 per job, $0.002 on Starter): foundit.in only and one city per run; this actor costs 10% less on Starter and searches all nine sites.
+- vs memo23/foundit-jobs-scraper ($0.00599 per job + $0.005 start): four sites, one per run, with coordinates and paid add-ons; this actor costs less and covers the Gulf, the Philippines, Hong Kong, Thailand and Vietnam.
+- vs scrapewise/foundit-scraper ($0.001 per job): six sites, one per run, cheaper per job; this actor searches several sites in one run and keeps only jobs in the place typed.
+
+## Sibling actors
+
+- Greenhouse Jobs Scraper (https://apify.com/anshumanatrey/greenhouse-jobs-search): Jobs from every company on Greenhouse, searched live
+- Lever Jobs Scraper (https://apify.com/anshumanatrey/lever-jobs-search): Jobs from 2,300+ companies on Lever (jobs.lever.co), searched live
+- Workday Jobs Scraper (https://apify.com/anshumanatrey/workday-job-search): Jobs from every company on Workday (myworkdayjobs.com), searched live
+- SmartRecruiters Jobs Scraper (https://apify.com/anshumanatrey/smartrecruiters-jobs-search): Jobs from 2,900+ companies on SmartRecruiters, searched live
+- Workable Jobs Scraper (https://apify.com/anshumanatrey/workable-job-search): Jobs from every company on Workable, in one search
+- Ashby Jobs Scraper (https://apify.com/anshumanatrey/ashby-jobs-search): Jobs from every company on Ashby (jobs.ashbyhq.com), searched live
+- Cornerstone Jobs Scraper (https://apify.com/anshumanatrey/cornerstone-jobs-search): Jobs from every company on Cornerstone (csod.com), searched live
+- Deel Jobs Scraper (https://apify.com/anshumanatrey/deel-jobs-search): Jobs from every company on Deel ATS (jobs.deel.com), with pay
+
+## Documentation
+
+- Apify Store: https://apify.com/anshumanatrey/foundit-jobs-search
+- GitHub repo: https://github.com/AnshumanAtrey/foundit-jobs-search
+- Issues / feedback: GitHub Issues on the above repo
+- License: MIT
+
+## Maintainer
+
+Anshuman Atrey (https://github.com/AnshumanAtrey), who publishes a portfolio of data and OSINT actors on Apify Store. Feature requests and bugs: LinkedIn (https://linkedin.com/in/anshumanatrey, fastest), GitHub issues, or atrey.dev.
+
+## Last updated
+
+2026-11-08

@@ -1,0 +1,577 @@
+{
+    "actorSpecification": 1,
+    "name": "foundit-jobs-search",
+    "title": "Foundit Jobs Scraper & API - Monster India, Gulf & Singapore",
+    "description": "Foundit jobs scraper and API for all nine foundit sites: Monster India (foundit.in), Monster Gulf, Singapore, the Philippines, Malaysia, Indonesia, Hong Kong, Thailand and Vietnam. Search 450,000+ live jobs by title, city, experience and posting date, newest first, with skills and pay. No login.",
+    "version": "1.0",
+    "buildTag": "latest",
+    "categories": [
+        "JOBS",
+        "LEAD_GENERATION",
+        "OPEN_SOURCE"
+    ],
+    "input": "./INPUT_SCHEMA.json",
+    "output": "./output_schema.json",
+    "dockerfile": "../Dockerfile",
+    "readme": "../README.md",
+    "minMemoryMbytes": 512,
+    "maxMemoryMbytes": 4096,
+    "storages": {
+        "dataset": {
+            "actorSpecification": 1,
+            "title": "foundit jobs",
+            "description": "One row per job, newest first: title, company, location, years of experience, skills, pay when shown, posting date, country site, listing source and links; with details on, also the description, every place with its state, the qualifications and pay as numbers. The run summary is the OUTPUT record, not a row.",
+            "fields": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job title (title)",
+                        "description": "The job title as the employer wrote it on foundit.",
+                        "example": "Senior Python Developer"
+                    },
+                    "company": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Company name (company)",
+                        "description": "The employer as foundit names it; \"Not disclosed\" when the employer hides its name.",
+                        "example": "Bnp Paribas Bank"
+                    },
+                    "location": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job location (location)",
+                        "description": "Where the job is, as foundit lists it, often with the country (Bengaluru, India) and sometimes several cities in one text. With full details on, the job's first place with its state and country.",
+                        "example": "Bengaluru, India"
+                    },
+                    "otherLocations": {
+                        "type": [
+                            "array",
+                            "null"
+                        ],
+                        "title": "Other locations (otherLocations)",
+                        "description": "With full details on: every other place of the job, with its state and country. Empty in other rows, where location holds every city.",
+                        "example": [
+                            "Pune, Maharashtra, India"
+                        ],
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "workType": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Remote or hybrid (workType)",
+                        "description": "remote when foundit marks the job work from home or its location or title says Remote, hybrid when the title says Hybrid. Empty when neither says, which is most jobs: foundit does not say which jobs are on site.",
+                        "example": "remote"
+                    },
+                    "employmentType": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job type (employmentType)",
+                        "description": "full-time, part-time or contract, as foundit states it.",
+                        "example": "full-time"
+                    },
+                    "department": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job function (department)",
+                        "description": "The job's function as foundit files it, such as Software Development or Banking. Empty when foundit files it as Others.",
+                        "example": "Software Development"
+                    },
+                    "salary": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Pay summary (salary)",
+                        "description": "The yearly pay range the employer shows, with its currency: about 40% of Singapore jobs and 1% or less elsewhere. Empty when no pay is shown or the employer hides it.",
+                        "example": "SGD 60,000 - 72,000 per year"
+                    },
+                    "postedAt": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Posted on (postedAt)",
+                        "description": "When foundit first listed the job, in UTC: the date its job page gives Google. A renewal by the employer does not change it (see refreshedAt).",
+                        "example": "2026-11-07T17:21:28Z"
+                    },
+                    "expiresAt": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Closes on (expiresAt)",
+                        "description": "When the job closes on foundit, in UTC (midnight India time for foundit.in jobs).",
+                        "example": "2026-12-21T18:30:00Z"
+                    },
+                    "jobUrl": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job link (jobUrl)",
+                        "description": "The job's page on its own foundit site.",
+                        "example": "https://www.foundit.in/job/assistant-manager-sql-and-python-developer-bnp-paribas-bank-bengaluru-bangalore-india-69744101"
+                    },
+                    "applyUrl": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Apply link (applyUrl)",
+                        "description": "Where to apply: the job's page on foundit for jobs posted there, or the site foundit copied a syndicated job from, mostly LinkedIn.",
+                        "example": "https://www.linkedin.com/jobs/view/4486590080/"
+                    },
+                    "status": {
+                        "type": "string",
+                        "title": "Still open? (status)",
+                        "description": "open for every search result (read live during the run). For a checked link: open, closed (foundit closed the job) or not found (no such job on foundit, or removed).",
+                        "example": "open"
+                    },
+                    "platform": {
+                        "type": "string",
+                        "title": "Job platform (platform)",
+                        "description": "Where the job came from: always foundit here.",
+                        "example": "foundit"
+                    },
+                    "companySlug": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Company on foundit (companySlug)",
+                        "description": "The company's name on foundit, the part of its jobs page address foundit.in/search/<companySlug>-jobs-career.",
+                        "example": "bnp-paribas-bank-1234567"
+                    },
+                    "jobId": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job ID (jobId)",
+                        "description": "foundit's ID of the job, the number at the end of its link. One ID is one job on every foundit site.",
+                        "example": "69744101"
+                    },
+                    "checkedAt": {
+                        "type": "string",
+                        "title": "Checked at (checkedAt)",
+                        "description": "When the run read foundit, in UTC.",
+                        "example": "2026-11-08T01:20:05+00:00"
+                    },
+                    "experienceMin": {
+                        "type": [
+                            "number",
+                            "null"
+                        ],
+                        "title": "Experience from (experienceMin)",
+                        "description": "The fewest years of experience the job asks for. Empty when the employer states none, which foundit stores as 0 to 0.",
+                        "example": 5
+                    },
+                    "experienceMax": {
+                        "type": [
+                            "number",
+                            "null"
+                        ],
+                        "title": "Experience up to (experienceMax)",
+                        "description": "The most years of experience the job asks for.",
+                        "example": 7
+                    },
+                    "site": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Country site (site)",
+                        "description": "The foundit site the job belongs to: foundit.in, founditgulf.com, foundit.sg, foundit.com.ph, foundit.my, foundit.id, foundit.hk, monster.co.th or monster.com.vn.",
+                        "example": "foundit.in"
+                    },
+                    "skills": {
+                        "type": [
+                            "array",
+                            "null"
+                        ],
+                        "title": "Skills asked (skills)",
+                        "description": "The skills foundit lists for the job.",
+                        "example": [
+                            "Python",
+                            "SQL",
+                            "Django"
+                        ],
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "industry": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Employer's industry (industry)",
+                        "description": "The industries foundit files the job under. Empty when foundit files it as Other, as it does for most syndicated jobs.",
+                        "example": "Information Technology, Banking"
+                    },
+                    "employerType": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Posted by (employerType)",
+                        "description": "company when the employer posted the job, consultant when a recruitment agency did.",
+                        "example": "company"
+                    },
+                    "jobSource": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Listing source (jobSource)",
+                        "description": "foundit when the employer posted the job on foundit, syndicated when foundit copied it from another job site (mostly LinkedIn), whose page applyUrl then points to. About 98% of the newest jobs are syndicated.",
+                        "example": "syndicated"
+                    },
+                    "applicants": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "title": "Applied so far (applicants)",
+                        "description": "How many people applied through foundit, as foundit counts them. Applications on another site are not counted.",
+                        "example": 3
+                    },
+                    "refreshedAt": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Last renewed (refreshedAt)",
+                        "description": "When the job was last listed, in UTC: what foundit shows as Posted 5 hours ago. Later than postedAt when the employer renewed the job.",
+                        "example": "2026-11-07T17:21:28Z"
+                    },
+                    "description": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job description (description)",
+                        "description": "The job description as plain text, with full details on.",
+                        "example": "We are looking for a Python developer with 5+ years of experience in Django."
+                    },
+                    "descriptionHtml": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Description as HTML (descriptionHtml)",
+                        "description": "The job description as the employer wrote it in HTML, with full details on.",
+                        "example": "<p>We are looking for a Python developer with 5+ years of experience in Django.</p>"
+                    },
+                    "qualifications": {
+                        "type": [
+                            "array",
+                            "null"
+                        ],
+                        "title": "Education asked (qualifications)",
+                        "description": "With full details on: the qualifications the employer lists, which only some jobs posted on foundit itself do; syndicated jobs have none.",
+                        "example": [
+                            "Bachelor Of Technology (B.Tech/B.E)"
+                        ],
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "salaryMin": {
+                        "type": [
+                            "number",
+                            "null"
+                        ],
+                        "title": "Lowest pay (salaryMin)",
+                        "description": "With full details on: the lowest yearly pay as a number, when the employer shows pay.",
+                        "example": 60000
+                    },
+                    "salaryMax": {
+                        "type": [
+                            "number",
+                            "null"
+                        ],
+                        "title": "Highest pay (salaryMax)",
+                        "description": "With full details on: the highest yearly pay as a number.",
+                        "example": 72000
+                    },
+                    "salaryCurrency": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Pay currency (salaryCurrency)",
+                        "description": "With full details on: the currency code of the pay numbers.",
+                        "example": "SGD"
+                    },
+                    "salaryPeriod": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Pay period (salaryPeriod)",
+                        "description": "With full details on: year whenever pay is shown, because foundit stores yearly amounts.",
+                        "example": "year"
+                    },
+                    "city": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job city (city)",
+                        "description": "With full details on: the city of the job's first place.",
+                        "example": "Bengaluru / Bangalore"
+                    },
+                    "region": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "State or province (region)",
+                        "description": "With full details on: the state of the job's first place.",
+                        "example": "Karnataka"
+                    },
+                    "country": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Country name (country)",
+                        "description": "With full details on: the country of the job's first place.",
+                        "example": "India"
+                    },
+                    "countryCode": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Country code (countryCode)",
+                        "description": "With full details on: the two-letter code of that country.",
+                        "example": "IN"
+                    }
+                }
+            },
+            "views": {
+                "jobs": {
+                    "title": "Jobs",
+                    "description": "One row per job: what it is, where, the years of experience asked, the pay when shown and when foundit first listed it, with its link.",
+                    "transformation": {
+                        "fields": [
+                            "title",
+                            "company",
+                            "location",
+                            "experienceMin",
+                            "experienceMax",
+                            "salary",
+                            "postedAt",
+                            "site",
+                            "jobUrl"
+                        ]
+                    },
+                    "display": {
+                        "component": "table",
+                        "properties": {
+                            "title": {
+                                "label": "Job title (title)",
+                                "format": "text"
+                            },
+                            "company": {
+                                "label": "Company name (company)",
+                                "format": "text"
+                            },
+                            "location": {
+                                "label": "Job location (location)",
+                                "format": "text"
+                            },
+                            "experienceMin": {
+                                "label": "Experience from (experienceMin)",
+                                "format": "number"
+                            },
+                            "experienceMax": {
+                                "label": "Experience up to (experienceMax)",
+                                "format": "number"
+                            },
+                            "salary": {
+                                "label": "Pay summary (salary)",
+                                "format": "text"
+                            },
+                            "postedAt": {
+                                "label": "Posted on (postedAt)",
+                                "format": "date"
+                            },
+                            "site": {
+                                "label": "Country site (site)",
+                                "format": "text"
+                            },
+                            "jobUrl": {
+                                "label": "Job link (jobUrl)",
+                                "format": "link"
+                            }
+                        }
+                    }
+                },
+                "details": {
+                    "title": "Details",
+                    "description": "The skills, description, qualifications, job type and function, who posted it and where it comes from, applicants, pay as numbers, renewal and closing dates and every other field of each job.",
+                    "transformation": {
+                        "fields": [
+                            "title",
+                            "company",
+                            "skills",
+                            "description",
+                            "qualifications",
+                            "employmentType",
+                            "workType",
+                            "department",
+                            "industry",
+                            "employerType",
+                            "jobSource",
+                            "applicants",
+                            "salaryMin",
+                            "salaryMax",
+                            "salaryCurrency",
+                            "refreshedAt",
+                            "expiresAt",
+                            "applyUrl",
+                            "region",
+                            "country",
+                            "otherLocations",
+                            "companySlug",
+                            "jobId",
+                            "checkedAt"
+                        ]
+                    },
+                    "display": {
+                        "component": "table",
+                        "properties": {
+                            "title": {
+                                "label": "Job title (title)",
+                                "format": "text"
+                            },
+                            "company": {
+                                "label": "Company name (company)",
+                                "format": "text"
+                            },
+                            "skills": {
+                                "label": "Skills asked (skills)",
+                                "format": "array"
+                            },
+                            "description": {
+                                "label": "Job description (description)",
+                                "format": "text"
+                            },
+                            "qualifications": {
+                                "label": "Education asked (qualifications)",
+                                "format": "array"
+                            },
+                            "employmentType": {
+                                "label": "Job type (employmentType)",
+                                "format": "text"
+                            },
+                            "workType": {
+                                "label": "Remote or hybrid (workType)",
+                                "format": "text"
+                            },
+                            "department": {
+                                "label": "Job function (department)",
+                                "format": "text"
+                            },
+                            "industry": {
+                                "label": "Employer's industry (industry)",
+                                "format": "text"
+                            },
+                            "employerType": {
+                                "label": "Posted by (employerType)",
+                                "format": "text"
+                            },
+                            "jobSource": {
+                                "label": "Listing source (jobSource)",
+                                "format": "text"
+                            },
+                            "applicants": {
+                                "label": "Applied so far (applicants)",
+                                "format": "number"
+                            },
+                            "salaryMin": {
+                                "label": "Lowest pay (salaryMin)",
+                                "format": "number"
+                            },
+                            "salaryMax": {
+                                "label": "Highest pay (salaryMax)",
+                                "format": "number"
+                            },
+                            "salaryCurrency": {
+                                "label": "Pay currency (salaryCurrency)",
+                                "format": "text"
+                            },
+                            "refreshedAt": {
+                                "label": "Last renewed (refreshedAt)",
+                                "format": "date"
+                            },
+                            "expiresAt": {
+                                "label": "Closes on (expiresAt)",
+                                "format": "date"
+                            },
+                            "applyUrl": {
+                                "label": "Apply link (applyUrl)",
+                                "format": "link"
+                            },
+                            "region": {
+                                "label": "State or province (region)",
+                                "format": "text"
+                            },
+                            "country": {
+                                "label": "Country name (country)",
+                                "format": "text"
+                            },
+                            "otherLocations": {
+                                "label": "Other locations (otherLocations)",
+                                "format": "array"
+                            },
+                            "companySlug": {
+                                "label": "Company on foundit (companySlug)",
+                                "format": "text"
+                            },
+                            "jobId": {
+                                "label": "Job ID (jobId)",
+                                "format": "text"
+                            },
+                            "checkedAt": {
+                                "label": "Checked at (checkedAt)",
+                                "format": "date"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "keyValueStore": {
+            "actorKeyValueStoreSchemaVersion": 1,
+            "title": "Run summary",
+            "description": "The OUTPUT record: how many foundit country sites were read and matched, how many jobs matched and were saved, the checked links, the notes about how the input was read and the settings used.",
+            "collections": {
+                "summary": {
+                    "title": "Run summary (OUTPUT)",
+                    "description": "Status, message, counts for the country sites and jobs, checked links, sites that could not be read, notes and settings.",
+                    "key": "OUTPUT"
+                }
+            }
+        }
+    }
+}

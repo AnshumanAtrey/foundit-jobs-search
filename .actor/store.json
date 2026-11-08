@@ -1,0 +1,81 @@
+{
+    "$comment": "Listing metadata, applied by scripts/store-metadata.mjs in CI (manager/rules/SEO.md). Add actorId after the first deploy creates the actor, so CI updates it by ID and a rename of name in actor.json keeps the same actor.",
+    "seoTitle": "Foundit Jobs Scraper - Monster India & Gulf Jobs",
+    "seoDescription": "Scrape foundit.in, founditgulf.com and seven more foundit sites: job titles, companies, years of experience, skills, pay and posting dates. No login.",
+    "exampleRunInput": {
+        "searchTerms": [
+            "software engineer"
+        ]
+    },
+    "actorPermissionLevel": "LIMITED_PERMISSIONS",
+    "isPublic": false,
+    "defaultRunOptions": {
+        "build": "latest",
+        "memoryMbytes": 1024,
+        "timeoutSecs": 1800
+    },
+    "defaultRunOptions$comment": "Default 1 GB, proposed from local runs on 2026-11-08 (apify run, engine from the platform/foundit worktree, memory and CPU read inside the actor's own process); measure on Apify before publishing. Searches peaked at 77-131 MB and used 0.4-6.7 s of CPU; every job of all nine sites (72,668 rows, 764 calls) peaked at 300 MB with 52 s of CPU in 417 s. Runs wait on foundit's pace of about 2 calls a second, not on CPU, so 512 MB (minMemoryMbytes) may be as fast for searches: run the example and the empty form at 512 MB and 1 GB on Apify and take 512 MB if the times match. 1 GB keeps a quarter core for the every-job run's 52 s of CPU. timeoutSecs 1800: the every-job run took 7 minutes.",
+    "pricing": {
+        "$comment": "2026-11-08. Rule: rules/SEO.md section 16. Main competitor: themineworks/foundit-jobs-scraper, the most used actor made only for Foundit (186 u30): $0.0025 a job on FREE, $0.002 BRONZE, $0.00175 SILVER, $0.0015 GOLD, no start fee, the description at the same price. job is 10% under it on BRONZE, where nearly every paying user is, and under it on every paid tier; job-details 5% under. Others on FREE: getascraper/india-job-inventory-feed $0.00199 (12 Indian boards), memo23 $0.00599 + $0.005 start, khadinakbar $0.003, shahidirfan $0.001 + $0.0005 start, scrapewise $0.001, scrapesage $0.004, data_daemon $0.0008 + $0.001 start (with descriptions, India only), seemuapps $0.004. No start fee: a search makes 1 to 10 calls, about 4 s locally, so at 1 GB and $0.20 per CU a 100-row run should cost about $0.0004 against $0.144 of developer revenue (0.3%); 100 rows with details about 55 s, $0.003 (2%); a state search, which opens each candidate, 48 s for 30 rows (6%). Runs of 0 or 1 row lose a few hundredths of a cent, as on the family's other no-start-fee actors. Every figure must be re-measured on Apify. Gentle ladder per the owner's decision of 2026-10-29. apply true; isPublic stays false until the priced proof run.",
+        "apply": true,
+        "pricingInfos": [
+            {
+                "pricingModel": "PAY_PER_EVENT",
+                "reasonForChange": "First pricing",
+                "pricingPerEvent": {
+                    "actorChargeEvents": {
+                        "job": {
+                            "eventTitle": "Job",
+                            "eventDescription": "One saved job row: title, company, location, years of experience, skills, pay when shown, posting date, country site, listing source and job link. Also one checked job link that is closed or not found.",
+                            "isPrimaryEvent": true,
+                            "eventTieredPricingUsd": {
+                                "FREE": {
+                                    "tieredEventPriceUsd": 0.0018
+                                },
+                                "BRONZE": {
+                                    "tieredEventPriceUsd": 0.0018
+                                },
+                                "SILVER": {
+                                    "tieredEventPriceUsd": 0.00162
+                                },
+                                "GOLD": {
+                                    "tieredEventPriceUsd": 0.00144
+                                },
+                                "PLATINUM": {
+                                    "tieredEventPriceUsd": 0.00144
+                                },
+                                "DIAMOND": {
+                                    "tieredEventPriceUsd": 0.00144
+                                }
+                            }
+                        },
+                        "job-details": {
+                            "eventTitle": "Job with details",
+                            "eventDescription": "One saved job row with full details on: everything in a Job row plus the description as text and HTML, every place with its state and country, the qualifications asked for and pay as numbers.",
+                            "eventTieredPricingUsd": {
+                                "FREE": {
+                                    "tieredEventPriceUsd": 0.0019
+                                },
+                                "BRONZE": {
+                                    "tieredEventPriceUsd": 0.0019
+                                },
+                                "SILVER": {
+                                    "tieredEventPriceUsd": 0.00171
+                                },
+                                "GOLD": {
+                                    "tieredEventPriceUsd": 0.00152
+                                },
+                                "PLATINUM": {
+                                    "tieredEventPriceUsd": 0.00152
+                                },
+                                "DIAMOND": {
+                                    "tieredEventPriceUsd": 0.00152
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}
