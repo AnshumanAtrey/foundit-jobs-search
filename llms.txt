@@ -24,7 +24,7 @@ Source: https://github.com/AnshumanAtrey/foundit-jobs-search
 - Job titles to find (searchTerms): one per line; a job matches when its title has every word.
 - Where the job is (location): city, state, country or region; each goes to the site that lists it; Remote alone asks for remote jobs, next to other places it narrows nothing; empty searches all nine sites.
 - Experience (experienceYears): 3, 2-5, 5+ (5 or more) or fresher (0); jobs whose range overlaps it; jobs that state no experience are left out.
-- Posted in the last (postedWithin): 24 hours, 3 days, 7 days, 30 days, any time, or your own period.
+- Posted in the last (postedWithin): 24 hours, 3 days, 7 days, 30 days (the default), any time, or your own period.
 - Number of jobs (maxJobs): 100 by default, 0 for every match (foundit shows up to 9,600 per search and site).
 - Full details (includeDetails): adds the description, every place with its state and country, the qualifications and pay as numbers.
 - Remote or hybrid (workType): remote or hybrid.

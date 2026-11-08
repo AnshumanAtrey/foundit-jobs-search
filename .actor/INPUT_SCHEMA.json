@@ -41,7 +41,7 @@
             "title": "Posted in the last (postedWithin)",
             "type": "string",
             "editor": "select",
-            "description": "Pick how new the jobs must be: posted in the last 24 hours, 3 days, 7 days or 30 days. Any time, the default, keeps every open job, newest first. The date is when foundit first listed the job, the date its job page gives Google, so an old job the employer renewed does not count as new. You can also type your own period, such as 48 hours or 2 weeks.",
+            "description": "Pick how new the jobs must be: posted in the last 24 hours, 3 days, 7 days or 30 days. 30 days, the default, keeps the last month's jobs, newest first, and any time keeps every open job. The date is when foundit first listed the job, the date its job page gives Google, so an old job the employer renewed does not count as new. You can also type your own period, such as 48 hours or 2 weeks.",
             "enumSuggestedValues": [
                 "24 hours",
                 "3 days",
@@ -57,7 +57,7 @@
                 "any time"
             ],
             "example": "7 days",
-            "default": "any time",
+            "default": "30 days",
             "nullable": true
         },
         "maxJobs": {

@@ -78,7 +78,7 @@ Nothing is required. Type a job title and press Start, or press Start with the f
 | Job titles to find (`searchTerms`) | One per line. A job matches when its title has every word: frontend also finds Front-End. A pasted foundit search link works too |
 | Where the job is (`location`) | A city, state, country or region: Bangalore, Karnataka, India, Dubai, UAE, Gulf, Southeast Asia. Each goes to the site that lists it. Remote alone asks for remote jobs; next to other places it narrows nothing. Empty searches all nine sites |
 | Experience (`experienceYears`) | 3, a range such as 2-5, 5+ for 5 or more, or fresher for 0: jobs whose range overlaps it. Jobs that state no experience are left out |
-| Posted in the last (`postedWithin`) | 24 hours, 3 days, 7 days, 30 days, any time, or your own period such as 48 hours |
+| Posted in the last (`postedWithin`) | 24 hours, 3 days, 7 days, 30 days (the default), any time, or your own period such as 48 hours |
 | Number of jobs (`maxJobs`) | How many, newest first: 100 by default, 0 for every match |
 | Full details (`includeDetails`) | Adds the description as text and HTML, every place with its state and country, the qualifications and pay as numbers |
 | Remote or hybrid (`workType`) | remote (foundit's work-from-home type, or Remote in the location or title) or hybrid (in the title) |
