@@ -75,8 +75,8 @@ Nothing is required. Type a job title and press Start, or press Start with the f
 | Field | What it does |
 |---|---|
 | Job titles to find (`searchTerms`) | One per line. A job matches when its title has every word: frontend also finds Front-End. A pasted foundit search link works too |
-| Where the job is (`location`) | A city, state, country or region: Bangalore, Karnataka, India, Dubai, UAE, Gulf, Southeast Asia. Each goes to the site that lists it. Empty searches all nine sites |
-| Experience (`experienceYears`) | 3, a range such as 2-5, 5+ or fresher: jobs whose range overlaps it |
+| Where the job is (`location`) | A city, state, country or region: Bangalore, Karnataka, India, Dubai, UAE, Gulf, Southeast Asia. Each goes to the site that lists it. Remote alone asks for remote jobs; next to other places it narrows nothing. Empty searches all nine sites |
+| Experience (`experienceYears`) | 3, a range such as 2-5, 5+ for 5 or more, or fresher for 0: jobs whose range overlaps it. Jobs that state no experience are left out |
 | Posted in the last (`postedWithin`) | 24 hours, 3 days, 7 days, 30 days, any time, or your own period such as 48 hours |
 | Number of jobs (`maxJobs`) | How many, newest first: 100 by default, 0 for every match |
 | Full details (`includeDetails`) | Adds the description as text and HTML, every place with its state and country, the qualifications and pay as numbers |
@@ -174,6 +174,10 @@ Foundit Jobs Scraper keeps the jobs whose location names the place you typed, by
 ### How do I filter by experience?
 
 Type your years in Experience (`experienceYears`): 3 keeps the jobs whose range holds 3 years, 2-5 the jobs whose range overlaps 2 to 5, 5+ five years or more, and fresher 0. foundit stores 0 to 0 years when the employer states none (its job page then says 0 - 1 years), and Foundit Jobs Scraper leaves those rows' experience empty and out of an experience search: 44% of the 5,000 newest jobs on 2026-11-08, on India and the other sites alike.
+
+### Why did my run find nothing?
+
+When a run saves no job, Foundit Jobs Scraper says why in its message and in the `nearMisses` part of the `OUTPUT` record. If foundit's own search had jobs with your words but one filter alone left them out, the message names it and how to loosen it, such as "the years of experience alone left out 242. To see them, type a wider range of years or leave it empty." If foundit's search found nothing at all inside your filters, it says "foundit has no job with your words inside your other filters", and if no job title had your words, it says so and suggests fewer words or Match descriptions. On 2026-11-08 an engineer search in Thailand for freshers saved 16 jobs, and 242 more had the words but stated no experience, so the experience filter alone left them out.
 
 ### Does it need a login, a proxy or an API key?
 

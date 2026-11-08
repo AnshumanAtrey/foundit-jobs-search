@@ -22,8 +22,8 @@ Source: https://github.com/AnshumanAtrey/foundit-jobs-search
 ## Input keys
 
 - Job titles to find (searchTerms): one per line; a job matches when its title has every word.
-- Where the job is (location): city, state, country or region; each goes to the site that lists it; empty searches all nine sites.
-- Experience (experienceYears): 3, 2-5, 5+ or fresher; jobs whose range overlaps it.
+- Where the job is (location): city, state, country or region; each goes to the site that lists it; Remote alone asks for remote jobs, next to other places it narrows nothing; empty searches all nine sites.
+- Experience (experienceYears): 3, 2-5, 5+ (5 or more) or fresher (0); jobs whose range overlaps it; jobs that state no experience are left out.
 - Posted in the last (postedWithin): 24 hours, 3 days, 7 days, 30 days, any time, or your own period.
 - Number of jobs (maxJobs): 100 by default, 0 for every match (foundit shows up to 9,600 per search and site).
 - Full details (includeDetails): adds the description, every place with its state and country, the qualifications and pay as numbers.
@@ -32,6 +32,8 @@ Source: https://github.com/AnshumanAtrey/foundit-jobs-search
 - Leave out words (excludeTerms): drops jobs whose title has these words.
 - Match descriptions (searchDescriptions): keeps every job foundit's own search finds for the words in skills and description.
 - Job links to check (jobUrls): checks links instead of searching.
+
+A run that saves nothing says why: the one filter that alone left out jobs that had the words ("the years of experience alone left out 242"), or that foundit has no job with the words inside the other filters, or that no title had the words.
 
 ## Pricing
 

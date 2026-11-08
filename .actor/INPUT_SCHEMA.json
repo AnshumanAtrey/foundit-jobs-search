@@ -20,7 +20,7 @@
             "title": "Where the job is (location)",
             "type": "array",
             "editor": "stringList",
-            "description": "Type where the jobs should be, one per line: a city (Bangalore, Mumbai, Dubai, Manila), a state (Karnataka), a country (India, UAE, Singapore) or a region (Gulf, Southeast Asia). Each place is searched on the foundit site that lists it, so India and the Gulf fit in one run. Bangalore also finds Bengaluru and Gurgaon finds Gurugram. Leave it empty for all nine sites.",
+            "description": "Type where the jobs should be, one per line: a city (Bangalore, Mumbai, Dubai, Manila), a state (Karnataka), a country (India, UAE, Singapore) or a region (Gulf, Southeast Asia). Each place is searched on the foundit site that lists it, so India and the Gulf fit in one run. Bangalore also finds Bengaluru. Remote alone asks for remote jobs; next to other places it narrows nothing. Leave it empty for all nine sites.",
             "placeholderValue": "Bangalore",
             "example": [
                 "Bangalore"
@@ -32,7 +32,7 @@
             "title": "Experience (experienceYears)",
             "type": "string",
             "editor": "textfield",
-            "description": "Type the years of experience to match: a number such as 3, a range such as 2-5, 5+ or fresher. A job is kept when the experience it asks for overlaps yours, so 3 finds jobs for 2-5 and 3-8 years. Jobs that state no experience, over 40% of them, are left out once you set it. Leave it empty for any experience.",
+            "description": "Type the years of experience to match: a number such as 3, a range such as 2-5, 5+ for 5 or more, or fresher for 0. A job is kept when the experience it asks for overlaps yours, so 3 finds jobs for 2-5 and 3-8 years. Jobs that state no experience, over 40% of them, are left out once you set it. Leave it empty for any experience.",
             "example": "3",
             "default": "any",
             "nullable": true
