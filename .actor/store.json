@@ -15,14 +15,14 @@
         "memoryMbytes": 512,
         "timeoutSecs": 1800
     },
-    "defaultRunOptions$comment": "Default 512 MB, measured on Apify on 2026-11-08 (build 1.0.3): the example took 5.3 s and cost $0.000806 at 512 MB, 4.6 s and $0.000916 at 1 GB, 3.0 s and $0.001000 at 2 GB (runs 5yj39mhQRS8JIPnWh, jc8gw1bqeY08XuJbD, UqmKsoJSDlEjnsYWx); every measured run peaked at 65 to 97 MB. A run waits on foundit's pace of about 2 calls a second, not on CPU: at 512 MB the daily-test input took 3.3 s, 1,000 jobs from all nine sites 13 s, 50 jobs with details 27 s and a state search of 100 jobs 87 s. Apify charges the start event once up to 1 GB, so 512 MB halves the compute of 1 GB at the same start charge. timeoutSecs 1800: every job on all nine sites (72,668) took 7 minutes and peaked at 300 MB locally; not run on Apify.",
+    "defaultRunOptions$comment": "Default 512 MB, measured on Apify on 2026-11-08 (build 1.0.3): the example took 5.3 s and cost $0.000806 at 512 MB, 4.6 s and $0.000916 at 1 GB, 3.0 s and $0.001000 at 2 GB (runs 5yj39mhQRS8JIPnWh, jc8gw1bqeY08XuJbD, UqmKsoJSDlEjnsYWx); every measured run peaked at 65 to 97 MB. A run waits on foundit's pace of about 2 calls a second, not on CPU: at 512 MB the daily-test input took 3.3 s, 1,000 jobs from all nine sites 13 s, 50 jobs with details 27 s and a state search of 100 jobs 5.5 s on engine v0.5.3 (87 s on v0.5.2, which opened each job for its state). Apify charges the start event once up to 1 GB, so 512 MB halves the compute of 1 GB at the same start charge. timeoutSecs 1800: every job on all nine sites (72,668) took 7 minutes and peaked at 300 MB locally; not run on Apify.",
     "pricing": {
-        "$comment": "Cost plus markup (owner, 2026-11-08, BRIEF-3): FREE 150%, BRONZE 140%, SILVER 125%, GOLD 110%, PLATINUM and DIAMOND 100% over the measured Apify cost at each tier's unit prices (docs.apify.com/platform/actors/publishing/monetize/pricing-and-costs.md; PLATINUM and DIAMOND at GOLD's), rounded up to two significant figures, never under $0.00001. Measured on Apify at 512 MB on 2026-11-08, build 1.0.3 (runs 5yj39mhQRS8JIPnWh, 61khoDxDAMgrfDhS9, wePaJk7dh7qCRfvV4, T7dTKgalnZjWLJ3y8, tjEgimt4QDQyMcxbq, nMblcX3PUPSDuDwFn): a run costs $0.000261 + $0.00000528 a job + $0.00001341 more for a job with details at FREE unit prices; a job's cost is almost all the dataset write ($0.000005). Markup after rounding: job FREE 157%, BRONZE 142%, SILVER 137%, GOLD and above 110%; job-details FREE 152%, BRONZE 144%, SILVER 127%, GOLD and above 115%. Apify stores PLATINUM and DIAMOND at GOLD's price whatever is sent (naukri, first set, 2026-11-08), so they carry GOLD's price here. The run start, $0.0063 flat, would be $0.0017 at 150% over the fixed cost of a run per GB ($0.000522); it is raised so the costliest measured run type, a state search that opens each candidate job for its state (accountant in Karnataka, 100 jobs in 87 s, run q6ZB0oVW2Z0cUnNYV), clears a 100% markup on BRONZE in the unpriced measurement (100.4%). A priced run costs about $0.0001 more: the SDK writes its charging state to the key-value store twice a run and once more a minute (priced runs HUqN9HBtNODUM20jw and gFWcJmq1OW8SrujwZ), so the priced 100-job state search clears 90% on BRONZE and 93% on FREE (125% or more from SILVER up). $0.0068 would clear 100%; that is an increase, which store-metadata.mjs does not apply, so it is the owner's call in Console while the actor is private. Every other measured run clears 210% or more on every tier with that overhead: the sparse Kerala state search (24 jobs), the empty Hinjewadi search, 1,000 jobs, 50 jobs with details, the examples at 1 GB and 2 GB. A state search past about 100 jobs falls under 100% and past about 300 under cost, since each of its jobs is opened once more and charged as a plain job. House rule for comparison only (SEO.md 16): $0.0018 a job and $0.0019 with details, 10% and 5% under themineworks/foundit-jobs-scraper's $0.002 on BRONZE, Gentle ladder, no start fee. Written by pricing/price_ladder.py; isPublic stays false until the owner's final check.",
+        "$comment": "Cost plus markup (owner, 2026-11-08, BRIEF-3): FREE 150%, BRONZE 140%, SILVER 125%, GOLD 110%, PLATINUM and DIAMOND 100% over the measured Apify cost at each tier's unit prices (docs.apify.com/platform/actors/publishing/monetize/pricing-and-costs.md; PLATINUM and DIAMOND at GOLD's), rounded up to two significant figures, never under $0.00001. Measured on Apify at 512 MB on 2026-11-08 (runs 9NB6gUpnTJcT7oAfA, 61khoDxDAMgrfDhS9, wePaJk7dh7qCRfvV4, T7dTKgalnZjWLJ3y8, tjEgimt4QDQyMcxbq, nMblcX3PUPSDuDwFn, and on engine v0.5.3 the state searches 63e3lK4Nh9QVNBQCV and ELA2isDrb2kEPoH4N): a run costs $0.000369 + $0.00000528 a job + $0.00001326 more for a job with details at FREE unit prices. That includes what every priced run pays and an unpriced measuring run does not: the SDK writes its charging state to the key-value store at the start, at the end and once a minute, about $0.0001 a run. Markup after rounding: job FREE 158%, BRONZE 143%, SILVER 137%, GOLD and above 110%; job-details FREE 150%, BRONZE 142%, SILVER 128%, GOLD and above 110%. Apify stores PLATINUM and DIAMOND at GOLD's price whatever is sent, so they carry GOLD's price here. The run start, $0.0024 flat, is 150% over the fixed cost of a run per GB ($0.000738); every measured run type clears a 100% markup on every tier with it, the lowest the 1,000-job run on GOLD and above at 140%, then the empty Hinjewadi search at 193% on FREE and BRONZE. The first pricing (2026-11-08) had a $0.0063 start, raised for a state search that opened each candidate job (87 s for 100 jobs on engine v0.5.2); v0.5.3 places Indian cities by Naukri's city list, so the same search took 5.5 s and the start came down. House rule for comparison only (SEO.md 16): $0.0018 a job and $0.0019 with details, 10% and 5% under themineworks/foundit-jobs-scraper's $0.002 on BRONZE, Gentle ladder, no start fee. Written by pricing/price_ladder.py; isPublic stays false until the owner's final check.",
         "apply": true,
         "pricingInfos": [
             {
                 "pricingModel": "PAY_PER_EVENT",
-                "reasonForChange": "First pricing",
+                "reasonForChange": "Lower run start and detail price: engine v0.5.3 makes a state search as cheap as a city search (measured on Apify, 2026-11-08)",
                 "pricingPerEvent": {
                     "actorChargeEvents": {
                         "job": {
@@ -55,28 +55,28 @@
                             "eventDescription": "One saved job row with full details on: everything in a Job row plus the description as text and HTML, every place with its state and country, the qualifications asked for and pay as numbers.",
                             "eventTieredPricingUsd": {
                                 "FREE": {
-                                    "tieredEventPriceUsd": 0.000059
+                                    "tieredEventPriceUsd": 0.000058
                                 },
                                 "BRONZE": {
-                                    "tieredEventPriceUsd": 0.000057
+                                    "tieredEventPriceUsd": 0.000056
                                 },
                                 "SILVER": {
                                     "tieredEventPriceUsd": 0.000044
                                 },
                                 "GOLD": {
-                                    "tieredEventPriceUsd": 0.000035
+                                    "tieredEventPriceUsd": 0.000034
                                 },
                                 "PLATINUM": {
-                                    "tieredEventPriceUsd": 0.000035
+                                    "tieredEventPriceUsd": 0.000034
                                 },
                                 "DIAMOND": {
-                                    "tieredEventPriceUsd": 0.000035
+                                    "tieredEventPriceUsd": 0.000034
                                 }
                             }
                         },
                         "apify-actor-start": {
                             "eventTitle": "Actor Start",
-                            "eventPriceUsd": 0.0063,
+                            "eventPriceUsd": 0.0024,
                             "eventDescription": "Charged when the Actor starts running. Number of events charged depends on Actor memory (one event per GB, minimum one event)."
                         }
                     }

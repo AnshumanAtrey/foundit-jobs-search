@@ -39,23 +39,23 @@ A run that saves nothing says why: the one filter that alone left out jobs that 
 
 PAY_PER_EVENT model, platform usage included:
 
-- Run start: $0.0063, once per run (once per GB of memory, so once at the default 512 MB)
+- Run start: $0.0024, once per run (once per GB of memory, so once at the default 512 MB)
 - Job: $0.000017 per saved job ($0.017 per 1,000), and per checked link that is closed or not found
-- Job with details: $0.000059 per saved job with full details on ($0.059 per 1,000)
+- Job with details: $0.000058 per saved job with full details on ($0.058 per 1,000)
 
-Foundit Jobs Scraper's Apify Store header, "from $0.011 / 1,000 jobs", shows the lowest discount-tier price, the GOLD price, without the run start. FREE users (Apify's Free plan) pay the prices above; BRONZE (Starter) pays $0.000016 a job and $0.000057 with details; SILVER (Scale) $0.000014 and $0.000044; GOLD (Business) and above $0.000011 and $0.000035. The run start is $0.0063 on every plan.
+Foundit Jobs Scraper's Apify Store header, "from $0.011 / 1,000 jobs", shows the lowest discount-tier price, the GOLD price, without the run start. FREE users (Apify's Free plan) pay the prices above; BRONZE (Starter) pays $0.000016 a job and $0.000056 with details; SILVER (Scale) $0.000014 and $0.000044; GOLD (Business) and above $0.000011 and $0.000034. The run start is $0.0024 on every plan.
 
 Typical costs (Free plan price):
 
-- 100 newest jobs: $0.008
-- 100 jobs with full details: $0.0122
-- 1,000 jobs: $0.0233
+- 100 newest jobs: $0.0041
+- 100 jobs with full details: $0.0082
+- 1,000 jobs: $0.0194
 
-Apify's free $5 monthly credit covers about 600 runs of 100 jobs.
+Apify's free $5 monthly credit covers about 1,200 runs of 100 jobs.
 
 ## Speed
 
-A search of 100 jobs takes a few seconds: one call per site and 100 jobs. Measured on Apify on 2026-11-08 at the default 512 MB: the 100 newest jobs from all nine sites in 3.3 s, the 1,000 newest in 13 s, 50 jobs with full details in 27 s. Measured locally: 5,000 jobs in under a minute, every job foundit shows on all nine sites (72,668) in 7 minutes. Full details read each saved job once more, about 2 jobs a second, because foundit refuses an address that calls too fast.
+A search of 100 jobs takes a few seconds: one call per site and 100 jobs. Measured on Apify on 2026-11-08 at the default 512 MB: the 100 newest jobs from all nine sites in 3.3 s, the 1,000 newest in 13 s, 50 jobs with full details in 27 s, a state search (accountant in Karnataka, 100 jobs) in 5.5 s. Measured locally: 5,000 jobs in under a minute, every job foundit shows on all nine sites (72,668) in 7 minutes. Full details read each saved job once more, about 2 jobs a second, because foundit refuses an address that calls too fast.
 
 ## How to call it
 
@@ -76,7 +76,7 @@ A search of 100 jobs takes a few seconds: one call per site and 100 jobs. Measur
 - The user needs jobs that exist only on other Indian boards (Naukri, Indeed, Shine): use an actor for that board or a multi-board feed.
 - The user needs pay on most jobs: foundit shows pay on about 40% of Singapore jobs and 1% or less elsewhere.
 - The user needs every job of a broad search on one site: foundit shows the 9,600 newest per search and site.
-- The user runs many searches of one to six jobs: the $0.0063 run start makes those cost more here than on data_daemon/foundit-jobs-scraper ($0.0008 a job plus a $0.001 start) or scrapewise/foundit-scraper ($0.001 a job).
+- The user runs many searches of one or two jobs: the $0.0024 run start makes those cost more here than on scrapewise/foundit-scraper ($0.001 a job) or data_daemon/foundit-jobs-scraper ($0.0008 a job plus a $0.001 start).
 
 ## Sample input
 
@@ -119,9 +119,9 @@ From a local run of the release candidate on 2026-11-08: python developer in Ban
 
 ## Differentiators vs alternatives
 
-- vs themineworks/foundit-jobs-scraper ($0.0025 per job, $0.002 on Starter): foundit.in only and one city per run; this actor costs less from 4 jobs a run (100 jobs: $0.008 against $0.25 on the Free plan) and searches all nine sites.
+- vs themineworks/foundit-jobs-scraper ($0.0025 per job, $0.002 on Starter): foundit.in only and one city per run; this actor costs less from 2 jobs a run (100 jobs: $0.0041 against $0.25 on the Free plan) and searches all nine sites.
 - vs memo23/foundit-jobs-scraper ($0.00599 per job + $0.005 start): four sites, one per run, with coordinates and paid add-ons; this actor costs less on every run and covers the Gulf, the Philippines, Hong Kong, Thailand and Vietnam.
-- vs scrapewise/foundit-scraper ($0.001 per job, no start fee): six sites, one per run, cheaper on runs of 6 jobs or fewer; this actor searches several sites in one run and keeps only jobs in the place typed.
+- vs scrapewise/foundit-scraper ($0.001 per job, no start fee): six sites, one per run, cheaper on runs of one or two jobs; this actor searches several sites in one run and keeps only jobs in the place typed.
 
 ## Sibling actors
 
