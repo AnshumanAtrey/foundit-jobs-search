@@ -1,5 +1,5 @@
 {
-    "$comment": "Example tasks published on the Store by scripts/publish-tasks.mjs after every deploy (CI only). Each one is a search people type, with its own Google-indexed landing page and .md (manager/rules/SEO.md section 18). Limits: title 63, description 400, seoTitle 60, seoDescription 160 (154 kept), 10 per actor. inputSchemaFields must stay fields of the input schema, or the page stops showing after a build. options follow defaultRunOptions in store.json.",
+    "$comment": "Example tasks published on the Store by scripts/publish-tasks.mjs after every deploy (CI only). Each one is a search people type, with its own Google-indexed landing page and .md (manager/rules/SEO.md section 18). Limits: title 63, description 400, seoTitle 60, seoDescription 160 (154 kept), 10 per actor. inputSchemaFields must stay fields of the input schema, or the page stops showing after a build. options follow defaultRunOptions in store.json. Tasks marked publish false stay saved but off the Store: the account publishes at most 100 pages across all actors, so each actor keeps 2 or more by its earnings and search traffic (2026-11-11).",
     "options": {
         "build": "latest",
         "memoryMbytes": 1024,
@@ -8,6 +8,7 @@
     "tasks": [
         {
             "name": "foundit-jobs-last-24-hours",
+            "publish": false,
             "title": "Find the newest foundit jobs posted in the last 24 hours",
             "description": "Get the 100 newest jobs that foundit first listed in the last day, across all nine sites from India to the Gulf and Southeast Asia, with the company, location, experience asked and link. A renewed old job does not count as new. Set Number of jobs to 0 to get every one, and schedule it daily.",
             "input": {
@@ -36,6 +37,7 @@
         },
         {
             "name": "python-developer-jobs-bangalore-foundit",
+            "publish": false,
             "title": "Find python developer jobs in Bangalore on foundit",
             "description": "Search foundit.in (Monster India) for python developer jobs in Bangalore, newest first, with the company, years of experience asked, skills and link. Bangalore also finds the jobs foundit writes as Bengaluru.",
             "input": {
@@ -68,6 +70,7 @@
         },
         {
             "name": "data-analyst-jobs-india-foundit",
+            "publish": false,
             "title": "Find data analyst jobs in India on foundit",
             "description": "Search foundit.in for data analyst jobs anywhere in India, newest first, with the company, city, years of experience asked, skills and link.",
             "input": {
@@ -130,6 +133,7 @@
         },
         {
             "name": "remote-jobs-india-foundit",
+            "publish": false,
             "title": "Find remote jobs in India on foundit",
             "description": "Get the newest remote and work-from-home jobs in India on foundit.in, from foundit's work-from-home type and from Remote in the location or title, with the company, experience asked and link.",
             "input": {
@@ -163,6 +167,7 @@
         },
         {
             "name": "sales-jobs-mumbai-foundit",
+            "publish": false,
             "title": "Find sales jobs in Mumbai on foundit",
             "description": "Search foundit.in for sales jobs in Mumbai, newest first, with the company, years of experience asked, skills and link. Only jobs in Mumbai itself: add Thane or Navi Mumbai as more places to include them.",
             "input": {
@@ -225,6 +230,7 @@
         },
         {
             "name": "software-engineer-jobs-singapore-foundit",
+            "publish": false,
             "title": "Find software engineer jobs in Singapore on foundit",
             "description": "Search foundit.sg, formerly Monster Singapore, for software engineer jobs, newest first, with the company, experience asked, pay when shown and link.",
             "input": {
@@ -257,6 +263,7 @@
         },
         {
             "name": "jobs-in-philippines-foundit",
+            "publish": false,
             "title": "Find jobs in the Philippines on foundit",
             "description": "Get the newest jobs from foundit.com.ph, formerly Monster Philippines, in Manila, Taguig, Cebu and the rest of the country, with the company, experience asked and link.",
             "input": {
@@ -287,6 +294,7 @@
         },
         {
             "name": "nurse-jobs-gulf-philippines-foundit",
+            "publish": false,
             "title": "Find nurse jobs in the Gulf and the Philippines on foundit",
             "description": "Search foundit's Gulf and Philippines sites for nurse jobs in one run, newest first, with the company, city, experience asked and link.",
             "input": {
