@@ -4,6 +4,13 @@ Foundit Jobs Scraper and API: search all nine foundit sites at once, live, and g
 
 Use it as a foundit jobs API or a Monster India jobs scraper with no login and no key, or as a daily feed of new jobs in Bangalore, Mumbai, Delhi, Dubai, Singapore or Manila, from the Apify Console, the Apify API, Python, JavaScript, n8n, Make or an AI agent, and export JSON, CSV or Excel. Type a place and the run searches the foundit site that lists it, so India and the Gulf fit in one run. Available as an [Apify Actor](https://apify.com/anshumanatrey/foundit-jobs-search). $0.0024 a run start, then $0.000017 per job and $0.000058 with full details.
 
+**Use it from an AI assistant:**
+
+- **Claude** (claude.ai and the desktop app): [Add Foundit Jobs to Claude](https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=Foundit%20Jobs&connectorUrl=https%3A%2F%2Fmcp.apify.com%3Ftools%3Danshumanatrey%2Ffoundit-jobs-search), click Continue, sign in to Apify, Allow, and ask in plain words.
+- **Claude Code:** `claude mcp add --transport http foundit-jobs-search "https://mcp.apify.com?tools=anshumanatrey/foundit-jobs-search"`, then run `/mcp` to sign in to Apify.
+- **Codex:** `codex mcp add foundit-jobs-search --url "https://mcp.apify.com?tools=anshumanatrey/foundit-jobs-search"`, then `codex mcp login foundit-jobs-search`.
+- **Any other MCP client:** `https://mcp.apify.com?tools=anshumanatrey/foundit-jobs-search`, signed in with Apify or an `Authorization: Bearer <APIFY_TOKEN>` header.
+
 ## What does it do?
 
 - **Searches all nine foundit sites in one run.** On 2026-11-08 they listed 450,058 open jobs: India 219,732, Singapore 107,828, the Philippines 39,492, the Gulf 30,909, Malaysia 21,817, Indonesia 11,602, Vietnam 6,923, Thailand 6,194 and Hong Kong 5,561 (Hong Kong also lists Taiwan and China, the Gulf also lists Egypt).
